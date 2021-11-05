@@ -11,31 +11,31 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('add_employee') }}" method="post" novalidate>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <form action="{{ url_for('employees.add_employee') }}" method="post" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
                     <!-- first name -->
                     <div class="mb-3">
                         <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                            placeholder="First name" required>
+                               placeholder="First name" required>
                     </div>
 
                     <!-- last name -->
                     <div class="mb-3">
                         <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                            placeholder="Last name" required>
+                               placeholder="Last name" required>
                     </div>
 
                     <!-- email -->
                     <div class="mb-3">
                         <input type="email" name="email" id="email" class="form-control form-control-sm"
-                            placeholder="Email" required>
+                               placeholder="Email" required>
                     </div>
 
                     <!-- phone number -->
                     <div class="mb-3">
                         <input type="text" name="phone_number" id="phone_number" class="form-control form-control-sm"
-                            placeholder="Phone number">
+                               placeholder="Phone number">
                     </div>
 
                     <!-- job -->
@@ -64,7 +64,7 @@
 
 <!-- Employee Details Modal -->
 <div id="employeeDetails{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeDetails{{employee.id}}">
+     aria-labelledby="employeeDetails{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -123,7 +123,7 @@
 
 <!-- Update Employee -->
 <div id="employeeUpdate{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeUpdate{{employee.id}}">
+     aria-labelledby="employeeUpdate{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -136,35 +136,35 @@
 
             <div class="modal-body">
                 <!-- edit form -->
-                <form action="{{ url_for('update_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <form action="{{ url_for('employees.update_employee', employee_id=employee.id) }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
                     <!-- first name -->
                     <div class="mb-3">
                         <label for="first_name">First name</label>
                         <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                            value="{{ employee.first_name }}" required>
+                               value="{{ employee.first_name }}" required>
                     </div>
 
                     <!-- last name -->
                     <div class="mb-3">
                         <label for="last_name">Last name</label>
                         <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                            value="{{ employee.last_name }}" required>
+                               value="{{ employee.last_name }}" required>
                     </div>
 
                     <!-- email -->
                     <div class="mb-3">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control form-control-sm"
-                            value="{{ employee.email }}" required>
+                               value="{{ employee.email }}" required>
                     </div>
 
                     <!-- phone number -->
                     <div class="mb-3">
                         <label for="phone_number">Phone number</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control form-control-sm"
-                            value="{% if employee.phone_number %} {{ employee.phone_number }} {% else %}{% endif %}">
+                               value="{% if employee.phone_number %} {{ employee.phone_number }} {% else %}{% endif %}">
                     </div>
 
                     <!-- job -->
@@ -197,7 +197,7 @@
 
 <!-- Delete Employee Modal -->
 <div id="employeeDelete{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeDelete{{employee.id}}">
+     aria-labelledby="employeeDelete{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -213,8 +213,8 @@
                     This process cannot be undone.</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <form action="{{ url_for('delete_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <form action="{{ url_for('employees.delete_employee', employee_id=employee.id) }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <button type="submit" class="btn" id="deleteButton">Delete</button>
                     <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
                 </form>

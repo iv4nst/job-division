@@ -7,7 +7,7 @@
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 
             <form action="" method="post" class="login100-form validate-form flex-sb flex-w">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
                 <!-- title -->
                 <span class="login100-form-title p-b-32 text-center">
@@ -41,7 +41,7 @@
                     </div>
 
                     <!-- forgot password -->
-                    <a href="{{ url_for('reset_password_request') }}" class="txt3">
+                    <a href="{{ url_for('auth.reset_password_request') }}" class="txt3">
                         Forgot Password?
                     </a>
                 </div>
@@ -69,7 +69,7 @@
                 <span class="txt2">
                     Don’t have an account?
                 </span>
-                <a class="txt3" href="{{ url_for('register') }}">
+                <a class="txt3" href="{{ url_for('auth.register') }}">
                     Sign Up
                 </a>
             </div>

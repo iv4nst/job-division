@@ -11,7 +11,7 @@ from app.auth.email import send_password_reset_email
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     form = LoginForm()
     if request.method == 'POST':
@@ -20,26 +20,26 @@ def login():
         # login
         if form.validate():
             login_user(employee, remember=form.remember_me.data)
-            return redirect(url_for('index'))
+            return redirect(url_for('main.index'))
         # errors
         else:
             error = [v[0] for k, v in form.errors.items()][0]
             # error = form.email.errors[0] if form.email.errors else form.password.errors[0]
-            return render_template('login.html', title='Login', form=form, error=error)
+            return render_template('auth/login.html', title='Login', form=form, error=error)
 
-    return render_template('login.html', title='Login', form=form)
+    return render_template('auth/login.html', title='Login', form=form)
 
 
 @auth.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     form = RegistrationForm()
     if request.method == 'POST':
@@ -51,10 +51,10 @@ def register():
             db.session.add(employee)
             db.session.commit()
             login_user(employee)
-            return redirect(url_for('login'))
+            return redirect(url_for('auth.login'))
         else:
             error = [v[0] for k, v in form.errors.items()][0]
-            return render_template('register.html', title='Register', form=form, error=error)
+            return render_template('auth/register.html', title='Register', form=form, error=error)
 
     # if form.validate_on_submit():
     #     employee = Employee(first_name=form.first_name.data,
@@ -66,35 +66,35 @@ def register():
     #     login_user(employee)
     #     return redirect(url_for('login'))
 
-    return render_template('register.html', title='Register', form=form)
+    return render_template('auth/register.html', title='Register', form=form)
 
 
 @auth.route('/reset_password_request', methods=['POST', 'GET'])
 def reset_password_request():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
         employee = Employee.query.filter_by(email=form.email.data).first()
         if employee:
             send_password_reset_email(employee)
-            return render_template('email_sent.html', title='Email sent')
+            return render_template('email/email_sent.html', title='Email sent')
         else:
             error = 'Email not recognized.'
-            return render_template('reset_password_request.html', title='Forgot Password', form=form, error=error)
+            return render_template('auth/reset_password_request.html', title='Forgot Password', form=form, error=error)
 
-    return render_template('reset_password_request.html', title='Forgot Password', form=form)
+    return render_template('auth/reset_password_request.html', title='Forgot Password', form=form)
 
 
 @auth.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     employee = Employee.verify_reset_password_token(token)
     if not employee:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         employee.set_password(form.password.data)

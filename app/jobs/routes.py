@@ -6,6 +6,15 @@ from app.models import Job, Employee
 from app.jobs import jobs
 
 
+@jobs.route('/jobs_list', methods=['GET', 'POST'])
+@login_required
+def jobs_list():
+    all_jobs = Job.query.all()
+    all_employees = Employee.query.all()
+
+    return render_template('jobs_list.html', title='Jobs', jobs=all_jobs, employees=all_employees)
+
+
 @jobs.route('/job/new', methods=['GET', 'POST'])
 @login_required
 def add_job():
@@ -18,7 +27,7 @@ def add_job():
         job = Job(title=title, description=description)
         db.session.add(job)
         db.session.commit()
-        return redirect(url_for('jobs_list'))
+        return redirect(url_for('jobs.jobs_list'))
 
 
 @jobs.route('/job/<int:job_id>/update', methods=['POST'])
@@ -33,7 +42,7 @@ def update_job(job_id):
         job.title = title
         job.description = description
         db.session.commit()
-        return redirect(url_for('jobs_list'))
+        return redirect(url_for('jobs.jobs_list'))
 
 
 @jobs.route('/job/<int:job_id>/delete', methods=['POST', 'GET'])
@@ -44,7 +53,7 @@ def delete_job(job_id):
     db.session.delete(job)
     db.session.commit()
 
-    return redirect(url_for('jobs_list'))
+    return redirect(url_for('jobs.jobs_list'))
 
 
 # TODO: Staviti za brisanje radnika sa odredjenog posla (modal za poslove - Workers dugme)
@@ -59,6 +68,6 @@ def delete_from_job(job_id, employee_id):
     job.employees.remove(employee)
     db.session.commit()
 
-    return redirect(url_for('jobs_list'))
+    return redirect(url_for('jobs.jobs_list'))
 
 # TODO: Staviti da preko modala za posao ide na profil radnika (kad napravim route za profil)

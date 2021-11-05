@@ -3,7 +3,15 @@ from flask_login import login_required, current_user
 
 from app import db
 from app.employees import employees
-from app.models import Employee
+from app.models import Employee, Job
+
+
+@employees.route('/employees_list', methods=['GET'])
+@login_required
+def employees_list():
+    all_employees = Employee.query.all()
+    all_jobs = Job.query.all()
+    return render_template('employees_list.html', title='Employees', employees=all_employees, jobs=all_jobs)
 
 
 @employees.route('/employee/new', methods=['GET', 'POST'])
@@ -32,7 +40,7 @@ def add_employee():
 
         db.session.add(employee)
         db.session.commit()
-    return redirect(url_for('employees_list'))
+    return redirect(url_for('employees.employees_list'))
 
 
 @employees.route('/employee/<int:employee_id>/update', methods=['POST', 'GET'])
@@ -55,7 +63,7 @@ def update_employee(employee_id):
         if job:
             employee.job = job
         db.session.commit()
-        return redirect(url_for('employees_list'))
+        return redirect(url_for('employees.employees_list'))
 
 
 @employees.route('/employee/<int:employee_id>/delete', methods=['POST', 'GET'])
@@ -67,4 +75,12 @@ def delete_employee(employee_id):
         db.session.delete(employee)
         db.session.commit()
 
-    return redirect(url_for('employees_list'))
+    return redirect(url_for('employees.employees_list'))
+
+
+@employees.route('/employees/<int:employee_id>', methods=['GET', 'POST'])
+def profile(employee_id):
+    """Employee profile"""
+    employee = Employee.query.get_or_404(employee_id)
+
+    return render_template('employee.html', employee=employee)
