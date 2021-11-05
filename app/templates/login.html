@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+
+            <form action="" method="post" class="login100-form validate-form flex-sb flex-w">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                <!-- title -->
+                <span class="login100-form-title p-b-32 text-center">
+                    Login
+                </span>
+
+                <!-- email -->
+                <label class="txt1 p-b-11" for="email">Email</label>
+                <div class="wrap-input100 validate-input m-b-36" data-validate="Invalid email">
+                    <input class="input100" type="text" name="email" id="email">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <!-- password -->
+                <label class="txt1 p-b-11" for="password">Password</label>
+                <div class="wrap-input100 validate-input m-b-12" data-validate="Invalid password">
+                    <span class="btn-show-pass">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <input class="input100" type="password" name="password" id="password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-15">
+                    <!-- remember me -->
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="remember_me" type="checkbox" name="remember_me">
+                        <label class="label-checkbox100" for="remember_me">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <!-- forgot password -->
+                    <a href="{{ url_for('reset_password_request') }}" class="txt3">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <!-- errors -->
+                <div class="message">
+                    <span class="error_message">{{ error }}</span>
+                </div>
+
+                <!-- login -->
+                <div class="container-login100-form-btn m-t-15">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <input class="login100-form-btn" id="submit" name="submit" type="submit" value="Login">
+                    </div>
+                </div>
+
+            </form>
+
+            <br>
+            <hr>
+
+            <!-- register -->
+            <div class="text-center p-t-20">
+                <span class="txt2">
+                    Don’t have an account?
+                </span>
+                <a class="txt3" href="{{ url_for('register') }}">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,234 @@
+html,
+body {
+  height: 100%;
+  background-color: silver;
+}
+
+section.my-login-page {
+  background-color: silver;
+  font-size: 14px;
+}
+
+.my-login-page .card-wrapper {
+  width: 400px;
+}
+
+.my-login-page .card {
+  border-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.my-login-page .card.fat {
+  padding: 10px;
+}
+
+.my-login-page .card .card-title {
+  margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+  border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+  width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+  padding: 12px 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .my-login-page .card-wrapper {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .my-login-page .card.fat {
+    padding: 0;
+  }
+
+  .my-login-page .card.fat .card-body {
+    padding: 15px;
+  }
+}
+
+.bx {
+  box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.2);
+}
+.card-border {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  border: 0px;
+}
+
+li button {
+  border-radius: 0.3rem !important;
+}
+
+/* MODALS */
+
+/* editing */
+.mb-3 label {
+  white-space: nowrap;
+  display: table-caption;
+}
+
+/* modal text */
+.modal-confirm {
+  color: #636363;
+  width: 400px;
+}
+
+/* header */
+.modal-confirm .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+
+/* content */
+.modal-confirm .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* title */
+.modal-confirm h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -10px;
+}
+
+/* close button (x) */
+.modal-confirm .close {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+}
+
+/* body font color */
+.modal-confirm .modal-body {
+  color: #999;
+}
+
+/* footer */
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 10px 15px 25px;
+}
+
+/* buttons */
+.modal-confirm .modal-footer a {
+  color: #999;
+}
+
+/* icon box (icon on top) */
+.modal-confirm .icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+}
+
+/* circles */
+#circleAdd {
+  border: 3px solid #ffc720;
+}
+#circleAddIcon {
+  color: #ffca2c;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+#circleDetails {
+  border: 3px solid #025ce2;
+}
+#circleDetailsIcon {
+  color: #025ce2;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+#circleEdit {
+  border: 3px solid #28a745;
+}
+#circleEditIcon {
+  color: #28a745;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+#circleDelete {
+  border: 3px solid #dc3545;
+}
+#circleDeleteIcon {
+  color: #dc3545;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+/* icon inside icon box (on top) */
+.modal-confirm .icon-box i {
+  color: #f15e5e;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+/* button active */
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  min-width: 120px;
+  border: none;
+  min-height: 40px;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+
+/* cancel button */
+#cancelButton {
+  background: #c1c1c1;
+}
+#cancelButton:hover,
+#cancelButton:focus,
+#cancelButton:active {
+  background: #a8a8a8;
+}
+
+/* update button color */
+#updateButton {
+  background: #28a745;
+}
+#updateButton:hover,
+#updateButton:focus,
+#updateButton:active {
+  background: #218838;
+}
+
+/* delete button color */
+#deleteButton {
+  background: #dc3545;
+}
+#deleteButton:hover,
+#deleteButton:focus,
+#deleteButton:active {
+  background: #c82333;
+}

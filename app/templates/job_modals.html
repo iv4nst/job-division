@@ -1,0 +1,204 @@
+<!-- ========================================================= MODALS =========================================================  -->
+<!-- Add Job Modal -->
+<div id="jobAdd" class="modal fade" tabindex="-1" aria-labelledby="jobAdd">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box" id="circleAdd">
+                    <i class="fas fa-user-plus" id="circleAddIcon"></i>
+                </div>
+                <h4 class="modal-title w-100">Add job</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('add_job') }}" method="post" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                    <!-- title -->
+                    <div class="mb-3">
+                        <input type="text" name="title" id="title" class="form-control form-control-sm"
+                            placeholder="Title" required>
+                    </div>
+
+                    <!-- description -->
+                    <div class="mb-3">
+                        <textarea name="description" id="description" cols="47" rows="2"
+                            placeholder="Description"></textarea>
+                    </div>
+
+
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-warning">Add</button>
+                        <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% for job in jobs %}
+<!-- Job Employees Modal -->
+<div id="job{{job.id}}Employees" class="modal fade" tabindex="-1" aria-labelledby="job{{job.id}}Employees">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <h4 class="modal-title w-100">{{ job.title }} employees</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card border-0 shadow">
+                    <div class="table-responsive">
+                        <table class="table m-0 table-striped table-hover text-left">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First name</th>
+                                    <th scope="col">Last name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone number</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for employee in employees %}
+                                {% if employee.job == job.title %}
+                                <tr>
+                                    <td>{{ employee.id }}</td>
+                                    <td>{{ employee.first_name }}</td>
+                                    <td>{{ employee.last_name }}</td>
+                                    <td>{{ employee.email }}</td>
+                                    <td>
+                                        {% if employee.phone_number %}
+                                        {{ employee.phone_number }}
+                                        {% else %}
+                                        N/A
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <!-- user profile -->
+                                                <a href="{{ url_for('profile', employee_id=employee.id) }}"
+                                                class="btn btn-warning btn-sm" data-placement="top"
+                                                    title="View profile">
+                                                    <i class="fas fa-user"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job Details Modal -->
+<div id="jobDetails{{job.id}}" class="modal fade" tabindex="-1" aria-labelledby="jobDetails{{job.id}}">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box" id="circleDetails">
+                    <i class="fas fa-info-circle" id="circleDetailsIcon"></i>
+                </div>
+                <h4 class="modal-title w-100">Job details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ job.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ job.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ job.description }}</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Job -->
+<div id="jobUpdate{{job.id}}" class="modal fade" tabindex="-1" aria-labelledby="jobUpdate{{job.id}}">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box" id="circleEdit">
+                    <i class="fas fa-edit" id="circleEditIcon"></i>
+                </div>
+                <h4 class="modal-title w-100">Update job "{{ job.title }}"</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- edit form -->
+                <form action="{{ url_for('update_job', job_id=job.id) }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                    <div class="mb-3">
+                        <label for="title">Job title</label>
+                        <input type="text" name="title" id="title" class="form-control form-control-sm"
+                            value="{{ job.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" class="form-control form-control-sm"
+                            value="{{ job.description }}" required>
+                    </div>
+
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn" id="updateButton">Update</button>
+                        <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Job Modal -->
+<div id="jobDelete{{job.id}}" class="modal fade" tabindex="-1" aria-labelledby="jobDelete{{job.id}}">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box" id="circleDelete">
+                    <i class="fas fa-trash" id="circleDeleteIcon"></i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- <p>Do you really want to delete these records? <br> This process cannot be undone.</p> -->
+                <p>Do you really want to delete job "{{job.title}}" ? <br> This process
+                    cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form action="{{ url_for('delete_job', job_id=job.id) }}">
+                    <button type="submit" class="btn" id="deleteButton">Delete</button>
+                    <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

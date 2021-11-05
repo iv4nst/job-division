@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+
+            <div class="message">
+                <p class="email-sent-title"> Email has been sent</p>
+                <p class="txt3">Check your email for the instructions to reset your password.</p>
+                <br>
+                <hr>
+                <p class="forgot_message"> <br>
+                    You may close this page or click <a class="txt1" href="{{ url_for('login') }}">here</a> to go to login.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
