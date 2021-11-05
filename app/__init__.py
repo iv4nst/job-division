@@ -7,15 +7,24 @@ from flask_mail import Mail
 
 from config import Config
 
-app = Flask(__name__)
-app.config.from_object(Config)
-
-db = SQLAlchemy(app)
-csrf = CSRFProtect(app)
-migrate = Migrate(app, db)
-login = LoginManager(app)
+db = SQLAlchemy()
+migrate = Migrate()
+csrf = CSRFProtect()
+login = LoginManager()
 login.login_view = 'login'
 login.login_message = 'Please log in to access this page.'
-mail = Mail(app)
+mail = Mail()
+
+
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    db.init_app(app)
+    migrate = Migrate(app, db)
+    csrf = CSRFProtect(app)
+    login = LoginManager(app)
+    mail = Mail(app)
+
 
 from app import routes, models
