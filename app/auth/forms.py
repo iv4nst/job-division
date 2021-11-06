@@ -55,6 +55,10 @@ class ResetPasswordRequestForm(FlaskForm):
 
 class ResetPasswordForm(FlaskForm):
     # TODO: Namestiti verifikaciju da se poklapaju sifre
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=5)])
-    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    new_password = PasswordField('Password',
+                                 validators=[DataRequired(),
+                                             Length(min=5, message='Password must be at least 5 characters long.')])
+    new_password_confirm = PasswordField('Confirm Password',
+                                         validators=[DataRequired(),
+                                                     EqualTo('new_password', message='Passwords must match.')])
     submit = SubmitField('Reset Password')

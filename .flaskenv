@@ -1,3 +1,3 @@
-FLASK_APP=job_division.py
+FLASK_APP=job_division
 FLASK_ENV=development
 FLASK_DEBUG=True

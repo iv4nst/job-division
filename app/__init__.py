@@ -36,7 +36,7 @@ def create_app(config_class=Config):
     from app.jobs import jobs
 
     app.register_blueprint(errors)
-    app.register_blueprint(auth, url_prefix='/auth')
+    app.register_blueprint(auth)
     app.register_blueprint(main)
     app.register_blueprint(employees)
     app.register_blueprint(jobs)
