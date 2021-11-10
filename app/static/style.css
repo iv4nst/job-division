@@ -1,73 +1,31 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+
 html,
 body {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   height: 100%;
   background-color: silver;
 }
 
-section.my-login-page {
-  background-color: silver;
-  font-size: 14px;
-}
-
-.my-login-page .card-wrapper {
-  width: 400px;
-}
-
-.my-login-page .card {
-  border-color: transparent;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.my-login-page .card.fat {
-  padding: 10px;
-}
-
-.my-login-page .card .card-title {
-  margin-bottom: 30px;
-}
-
-.my-login-page .form-control {
-  border-width: 2.3px;
-}
-
-.my-login-page .form-group label {
-  width: 100%;
-}
-
-.my-login-page .btn.btn-block {
-  padding: 12px 10px;
-}
-
-@media screen and (max-width: 425px) {
-  .my-login-page .card-wrapper {
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .my-login-page .card.fat {
-    padding: 0;
-  }
-
-  .my-login-page .card.fat .card-body {
-    padding: 15px;
-  }
-}
-
-.bx {
-  box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.2);
-}
+/* index */
 .card-border {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   border: 0px;
 }
 
+/*//////////////////////////////////////////////////////////////////
+[ Employees ]*/
+
+/* buttons - details, update, delete, profile */
 li button {
   border-radius: 0.3rem !important;
 }
 
-/* MODALS */
+/*//////////////////////////////////////////////////////////////////
+[ Modals ]*/
 
 /* editing */
 .mb-3 label {
@@ -101,13 +59,6 @@ li button {
   text-align: center;
   font-size: 26px;
   margin: 30px 0 -10px;
-}
-
-/* close button (x) */
-.modal-confirm .close {
-  position: absolute;
-  top: -5px;
-  right: -2px;
 }
 
 /* body font color */

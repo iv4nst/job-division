@@ -9,7 +9,7 @@
         <!-- left side -->
         <div class="col-lg-3 col-md-3">
             <div class="list-group">
-                <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#jobAdd">Add Job</a>
+                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#jobAdd">Add Job</a>
                 <a href="{{ url_for('employees.employees_list') }}" class="btn btn-info">View Employees</a>
             </div>
         </div>
@@ -40,8 +40,8 @@
                             <td>
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <button class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#job{{job.id}}Employees" data-placement="top"
+                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#job{{job.id}}Employees" data-placement="top"
                                                 title="Details">
                                             <i class="fas fa-list"></i>
                                         </button>
@@ -53,21 +53,21 @@
                                 <!-- action buttons -->
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#jobDetails{{job.id}}" data-placement="top"
+                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#jobDetails{{job.id}}" data-placement="top"
                                                 title="Details">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
                                     </li>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-success btn-sm" data-toggle="modal"
-                                                data-target="#jobUpdate{{job.id}}" data-placement="top" title="Update">
+                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#jobUpdate{{job.id}}" data-placement="top" title="Update">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                     </li>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#jobDelete{{job.id}}" data-placement="top" title="Delete">
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#jobDelete{{job.id}}" data-placement="top" title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </li>
@@ -84,6 +84,6 @@
 </div>
 <!-- dashboard contents -->
 
-{% include 'job_modals.html' %}
+{% include 'jobs/job_modals.html' %}
 
 {% endblock %}

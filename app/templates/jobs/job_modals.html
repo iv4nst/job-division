@@ -8,7 +8,6 @@
                     <i class="fas fa-user-plus" id="circleAddIcon"></i>
                 </div>
                 <h4 class="modal-title w-100">Add job</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <form action="{{ url_for('jobs.add_job') }}" method="post" novalidate>
@@ -29,7 +28,7 @@
 
                     <div class="modal-footer justify-content-center">
                         <button type="submit" class="btn btn-warning">Add</button>
-                        <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -96,7 +95,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -111,7 +110,6 @@
                     <i class="fas fa-info-circle" id="circleDetailsIcon"></i>
                 </div>
                 <h4 class="modal-title w-100">Job details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <table class="table table-bordered">
@@ -131,7 +129,7 @@
                 </table>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -146,7 +144,6 @@
                     <i class="fas fa-edit" id="circleEditIcon"></i>
                 </div>
                 <h4 class="modal-title w-100">Update job "{{ job.title }}"</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
@@ -167,7 +164,7 @@
 
                     <div class="modal-footer justify-content-center">
                         <button type="submit" class="btn" id="updateButton">Update</button>
-                        <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -184,7 +181,6 @@
                     <i class="fas fa-trash" id="circleDeleteIcon"></i>
                 </div>
                 <h4 class="modal-title w-100">Are you sure?</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
@@ -195,7 +191,7 @@
             <div class="modal-footer justify-content-center">
                 <form action="{{ url_for('jobs.delete_job', job_id=job.id) }}">
                     <button type="submit" class="btn" id="deleteButton">Delete</button>
-                    <button type="button" class="btn" id="cancelButton" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                 </form>
             </div>
         </div>

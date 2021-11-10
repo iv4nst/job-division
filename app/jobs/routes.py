@@ -12,7 +12,7 @@ def jobs_list():
     all_jobs = Job.query.all()
     all_employees = Employee.query.all()
 
-    return render_template('jobs_list.html', title='Jobs', jobs=all_jobs, employees=all_employees)
+    return render_template('jobs/jobs_list.html', title='Jobs', jobs=all_jobs, employees=all_employees)
 
 
 @jobs.route('/job/new', methods=['GET', 'POST'])

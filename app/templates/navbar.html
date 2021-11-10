@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+
+        <a href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='logo.png') }}" style="width: 55px;" alt="logo">
+        </a>
+
+
+        <!-- navbar toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- navbar -->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('employees.employees_list') }}">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('jobs.jobs_list') }}">Jobs</a>
+                </li>
+            </ul>
+
+            <!-- search box -->
+            <!-- <form class="d-flex">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-sm" placeholder="Search.."
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-sm btn-success" type="submit" id="button-addon2"><i
+                            class="fa fa-search"></i></button>
+                </div>
+            </form> -->
+
+            {% if not current_user.is_anonymous %}
+            <li class="nav-item">
+                <a href="{{ url_for('employees.profile', employee_id=current_user.id) }}" class="ml-3 btn btn-sm btn-warning">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('auth.logout') }}" class="ml-3 btn btn-sm btn-warning">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a href="{{ url_for('auth.login') }}" class="ml-3 btn btn-sm btn-warning">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('auth.register') }}" class="ml-3 btn btn-sm btn-warning">Register</a>
+            </li>
+            {% endif %}
+        </div>
+    </div>
+</nav>

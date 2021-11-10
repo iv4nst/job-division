@@ -11,7 +11,8 @@ from app.models import Employee, Job
 def employees_list():
     all_employees = Employee.query.all()
     all_jobs = Job.query.all()
-    return render_template('employees_list.html', title='Employees', employees=all_employees, jobs=all_jobs)
+
+    return render_template('employees/employees_list.html', title='Employees', employees=all_employees, jobs=all_jobs)
 
 
 @employees.route('/employee/new', methods=['GET', 'POST'])
@@ -83,4 +84,4 @@ def profile(employee_id):
     """Employee profile"""
     employee = Employee.query.get_or_404(employee_id)
 
-    return render_template('employee.html', employee=employee)
+    return render_template('employees/employee.html', employee=employee)

@@ -313,10 +313,10 @@ label {
   right: 12px;
   padding: 0 5px;
   cursor: pointer;
-  -webkit-transition: background 0.4s;
-  -o-transition: background 0.4s;
-  -moz-transition: background 0.4s;
-  transition: background 0.4s;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
 }
 
 .btn-show-pass:hover {

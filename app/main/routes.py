@@ -18,7 +18,7 @@ def before_request():
 
 
 @main.route('/')
-@login_required
+# @login_required
 def index():
     # all employees and jobs
     employees = Employee.query.all()
