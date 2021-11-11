@@ -14,24 +14,26 @@
 
     <!-- styles -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body,
+        html {
+            padding-top: 0% !important;
+        }
+    </style>
 
     <!-- title -->
-    {% if title %}
     <title>{{ title }} - Job-Division</title>
-    {% else %}
-    <title>Job-Division</title>
-    {% endif %}
 </head>
 
 <body>
     <!-- content -->
     {% block app_content %}{% endblock %}
 
-    <!-- jquery -->
+    <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
 </body>

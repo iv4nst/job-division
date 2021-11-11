@@ -6,7 +6,7 @@ from app.employees import employees
 from app.models import Employee, Job
 
 
-@employees.route('/employees_list', methods=['GET'])
+@employees.route('/employees_list', methods=['GET', 'POST'])
 @login_required
 def employees_list():
     all_employees = Employee.query.all()

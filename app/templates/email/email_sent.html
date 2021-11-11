@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'auth/auth_layout.html' %}
 
 {% block app_content %}
 
@@ -8,12 +8,12 @@
 
             <div class="message">
                 <p class="email-sent-title"> Email has been sent</p>
-                <p class="txt3">Check your email for the instructions to reset your password.</p>
+                <p class="bottom-question-txt">Check your email for the instructions to reset your password.</p>
                 <br>
                 <hr>
                 <p class="forgot_message"><br>
-                    You may close this page or click <a class="txt1" href="{{ url_for('auth.login') }}">here</a> to go
-                    to login.
+                    You may close this page or click
+                    <a class="link-txt" href="{{ url_for('auth.login') }}">here</a> to go to login.
                 </p>
             </div>
 

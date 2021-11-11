@@ -11,31 +11,100 @@
                 <h4 class="modal-title w-100">Add employee</h4>
             </div>
             <div class="modal-body">
+                <form class="login100-form validate-form flex-sb flex-w"
+                    action="{{ url_for('employees.add_employee') }}" method="post" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                    <!-- title -->
+                    <span class="login100-form-title p-b-32 text-center">
+                        Register
+                    </span>
+
+                    <div class="row row-space">
+                        <!-- first name -->
+                        <div class="col-2">
+                            <label class="txt1 p-b-11" for="first_name">First name</label>
+                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
+                                <input class="input100" type="text" name="first_name" id="first_name">
+                                <span class="focus-input100"></span>
+                            </div>
+                        </div>
+                        <!-- last name -->
+                        <div class="col-2">
+
+                            <label class="txt1 p-b-11" for="last_name">Last name</label>
+                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
+                                <input class="input100" type="text" name="last_name" id="last_name">
+                                <span class="focus-input100"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- email -->
+                    <label class="txt1 p-b-11" for="email">Email</label>
+                    <div class="wrap-input100 input-group validate-input m-b-30" data-validate="Invalid email">
+                        <input class="input100" type="text" name="email" id="email">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <!-- passwords -->
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <label class="txt1 p-b-11" for="password">Password</label>
+                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
+                                <input class="input100" type="password" name="password" id="password">
+                                <span class="focus-input100"></span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <label class="txt1 p-b-11" for="password_confirm">Confirm password</label>
+                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
+                                <input class="input100" type="password" name="password_confirm" id="password_confirm">
+                                <span class="focus-input100"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- errors -->
+                    <div class="message">
+                        <span class="error_message">{{ message }}</span>
+                    </div>
+
+                    <!-- login -->
+                    <div class="container-login100-form-btn m-t-15">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <input class="login100-form-btn" id="submit" name="submit" type="submit" value="Register">
+                        </div>
+                    </div>
+                </form>
+
+
                 <form action="{{ url_for('employees.add_employee') }}" method="post" novalidate>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <!-- first name -->
                     <div class="mb-3">
                         <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                               placeholder="First name" required>
+                            placeholder="First name" required>
                     </div>
 
                     <!-- last name -->
                     <div class="mb-3">
                         <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                               placeholder="Last name" required>
+                            placeholder="Last name" required>
                     </div>
 
                     <!-- email -->
                     <div class="mb-3">
                         <input type="email" name="email" id="email" class="form-control form-control-sm"
-                               placeholder="Email" required>
+                            placeholder="Email" required>
                     </div>
 
                     <!-- phone number -->
                     <div class="mb-3">
                         <input type="text" name="phone_number" id="phone_number" class="form-control form-control-sm"
-                               placeholder="Phone number">
+                            placeholder="Phone number">
                     </div>
 
                     <!-- job -->
@@ -64,7 +133,7 @@
 
 <!-- Employee Details Modal -->
 <div id="employeeDetails{{employee.id}}" class="modal fade" tabindex="-1"
-     aria-labelledby="employeeDetails{{employee.id}}">
+    aria-labelledby="employeeDetails{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -122,7 +191,7 @@
 
 <!-- Update Employee -->
 <div id="employeeUpdate{{employee.id}}" class="modal fade" tabindex="-1"
-     aria-labelledby="employeeUpdate{{employee.id}}">
+    aria-labelledby="employeeUpdate{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -135,34 +204,34 @@
             <div class="modal-body">
                 <!-- edit form -->
                 <form action="{{ url_for('employees.update_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <!-- first name -->
                     <div class="mb-3">
                         <label for="first_name">First name</label>
                         <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                               value="{{ employee.first_name }}" required>
+                            value="{{ employee.first_name }}" required>
                     </div>
 
                     <!-- last name -->
                     <div class="mb-3">
                         <label for="last_name">Last name</label>
                         <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                               value="{{ employee.last_name }}" required>
+                            value="{{ employee.last_name }}" required>
                     </div>
 
                     <!-- email -->
                     <div class="mb-3">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control form-control-sm"
-                               value="{{ employee.email }}" required>
+                            value="{{ employee.email }}" required>
                     </div>
 
                     <!-- phone number -->
                     <div class="mb-3">
                         <label for="phone_number">Phone number</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control form-control-sm"
-                               value="{% if employee.phone_number %} {{ employee.phone_number }} {% else %}{% endif %}">
+                            value="{% if employee.phone_number %} {{ employee.phone_number }} {% else %}{% endif %}">
                     </div>
 
                     <!-- job -->
@@ -195,7 +264,7 @@
 
 <!-- Delete Employee Modal -->
 <div id="employeeDelete{{employee.id}}" class="modal fade" tabindex="-1"
-     aria-labelledby="employeeDelete{{employee.id}}">
+    aria-labelledby="employeeDelete{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -211,7 +280,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <form action="{{ url_for('employees.delete_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <button type="submit" class="btn" id="deleteButton">Delete</button>
                     <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                 </form>

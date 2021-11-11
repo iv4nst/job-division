@@ -11,18 +11,18 @@
             </div>
             <div class="modal-body">
                 <form action="{{ url_for('jobs.add_job') }}" method="post" novalidate>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <!-- title -->
                     <div class="mb-3">
                         <input type="text" name="title" id="title" class="form-control form-control-sm"
-                               placeholder="Title" required>
+                            placeholder="Title" required>
                     </div>
 
                     <!-- description -->
                     <div class="mb-3">
-                        <textarea name="description" id="description" cols="47" rows="2"
-                                  placeholder="Description"></textarea>
+                        <textarea class="form-control" name="description" id="description" rows="2"
+                            placeholder="Description"></textarea>
                     </div>
 
 
@@ -50,45 +50,45 @@
                     <div class="table-responsive">
                         <table class="table m-0 table-striped table-hover text-left">
                             <thead class="table-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone number</th>
-                                <th scope="col"></th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First name</th>
+                                    <th scope="col">Last name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone number</th>
+                                    <th scope="col"></th>
+                                </tr>
                             </thead>
                             <tbody>
-                            {% for employee in employees %}
-                            {% if employee.job == job.title %}
-                            <tr>
-                                <td>{{ employee.id }}</td>
-                                <td>{{ employee.first_name }}</td>
-                                <td>{{ employee.last_name }}</td>
-                                <td>{{ employee.email }}</td>
-                                <td>
-                                    {% if employee.phone_number %}
-                                    {{ employee.phone_number }}
-                                    {% else %}
-                                    N/A
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <!-- user profile -->
-                                            <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
-                                               class="btn btn-warning btn-sm" data-placement="top"
-                                               title="View profile">
-                                                <i class="fas fa-user"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            {% endif %}
-                            {% endfor %}
+                                {% for employee in employees %}
+                                {% if employee.job == job.title %}
+                                <tr>
+                                    <td>{{ employee.id }}</td>
+                                    <td>{{ employee.first_name }}</td>
+                                    <td>{{ employee.last_name }}</td>
+                                    <td>{{ employee.email }}</td>
+                                    <td>
+                                        {% if employee.phone_number %}
+                                        {{ employee.phone_number }}
+                                        {% else %}
+                                        N/A
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <!-- user profile -->
+                                                <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
+                                                    class="btn btn-warning btn-sm" data-placement="top"
+                                                    title="View profile">
+                                                    <i class="fas fa-user"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -125,6 +125,10 @@
                         <th>Description</th>
                         <td>{{ job.description }}</td>
                     </tr>
+                    <tr>
+                        <th># of employees</th>
+                        <td>{{ job.employees.count() }}</td>
+                    </tr>
 
                 </table>
             </div>
@@ -149,17 +153,17 @@
             <div class="modal-body">
                 <!-- edit form -->
                 <form action="{{ url_for('jobs.update_job', job_id=job.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <div class="mb-3">
                         <label for="title">Job title</label>
                         <input type="text" name="title" id="title" class="form-control form-control-sm"
-                               value="{{ job.title }}" required>
+                            value="{{ job.title }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="description">Description</label>
                         <input type="text" name="description" id="description" class="form-control form-control-sm"
-                               value="{{ job.description }}" required>
+                            value="{{ job.description }}" required>
                     </div>
 
                     <div class="modal-footer justify-content-center">

@@ -8,12 +8,17 @@
         <div class="col-lg-3 col-md-3">
             <div class="card card-border">
                 <div class="card-body">
-                    <h4 class="card-title">{{ num_of_employees }} <small class="text-muted">Employees</small></h4>
+                    <h4 class="card-title text-center">{{ num_of_employees }}
+                        <small class="text-muted">
+                            {% if num_of_employees == 1 %} Employee {% else %} Employees {% endif %}
+                        </small>
+                    </h4>
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="{{url_for('employees.employees_list')}}"
-                        class="list-group-item list-group-item-primary">View
-                        all</a>
+                        class="list-group-item list-group-item-primary text-center">
+                        View all
+                    </a>
                 </div>
             </div>
         </div>
@@ -21,10 +26,16 @@
         <div class="col-lg-3 col-md-3">
             <div class="card card-border">
                 <div class="card-body">
-                    <h4 class="card-title">{{ num_of_jobs }} <small class="text-muted">Jobs</small></h4>
+                    <h4 class="card-title text-center">{{ num_of_jobs }}
+                        <small class="text-muted">
+                            {% if num_of_jobs == 1 %} Job {% else %} Jobs {% endif %}
+                        </small>
+                    </h4>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{url_for('jobs.jobs_list')}}" class="list-group-item list-group-item-primary">View all</a>
+                    <a href="{{url_for('jobs.jobs_list')}}" class="list-group-item list-group-item-primary text-center">
+                        View all
+                    </a>
                 </div>
             </div>
         </div>

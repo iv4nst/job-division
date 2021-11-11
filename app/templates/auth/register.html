@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'auth_layout.html' %}
 
 {% block app_content %}
 
@@ -17,7 +17,7 @@
                 <div class="row row-space">
                     <!-- first name -->
                     <div class="col-2">
-                        <label class="txt1 p-b-11" for="first_name">First name</label>
+                        <label class="label-txt p-b-11" for="first_name">First name</label>
                         <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
                             <input class="input100" type="text" name="first_name" id="first_name">
                             <span class="focus-input100"></span>
@@ -26,7 +26,7 @@
                     <!-- last name -->
                     <div class="col-2">
 
-                        <label class="txt1 p-b-11" for="last_name">Last name</label>
+                        <label class="label-txt p-b-11" for="last_name">Last name</label>
                         <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
                             <input class="input100" type="text" name="last_name" id="last_name">
                             <span class="focus-input100"></span>
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- email -->
-                <label class="txt1 p-b-11" for="email">Email</label>
+                <label class="label-txt p-b-11" for="email">Email</label>
                 <div class="wrap-input100 input-group validate-input m-b-30" data-validate="Invalid email">
                     <input class="input100" type="text" name="email" id="email">
                     <span class="focus-input100"></span>
@@ -44,14 +44,14 @@
                 <!-- passwords -->
                 <div class="row row-space">
                     <div class="col-2">
-                        <label class="txt1 p-b-11" for="password">Password</label>
+                        <label class="label-txt p-b-11" for="password">Password</label>
                         <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
                             <input class="input100" type="password" name="password" id="password">
                             <span class="focus-input100"></span>
                         </div>
                     </div>
                     <div class="col-2">
-                        <label class="txt1 p-b-11" for="password_confirm">Confirm password</label>
+                        <label class="label-txt p-b-11" for="password_confirm">Confirm password</label>
                         <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
                             <input class="input100" type="password" name="password_confirm" id="password_confirm">
                             <span class="focus-input100"></span>
@@ -65,10 +65,10 @@
                 </div>
 
                 <!-- login -->
-                <div class="container-login100-form-btn m-t-15">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <input class="login100-form-btn" id="submit" name="submit" type="submit" value="Register">
+                <div class="form-btn-container m-t-15">
+                    <div class="wrap-form-btn">
+                        <div class="form-btn-bg"></div>
+                        <input class="form-btn" id="submit" name="submit" type="submit" value="Register">
                     </div>
                 </div>
 
@@ -79,10 +79,10 @@
 
             <!-- register -->
             <div class="text-center p-t-20">
-                <span class="txt2">
+                <span class="bottom-question-txt">
                     Already have an account?
                 </span>
-                <a class="txt3" href="{{ url_for('auth.login') }}">
+                <a class="link-txt" href="{{ url_for('auth.login') }}">
                     Login
                 </a>
             </div>

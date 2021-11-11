@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, flash, session
 from flask_login import login_user, logout_user, current_user
-import json
+from werkzeug.urls import url_parse
 
 from app import db
 from app.auth import auth
@@ -21,7 +21,12 @@ def login():
         # login
         if form.validate():
             login_user(employee, remember=form.remember_me.data)
-            return redirect(url_for('main.index'))
+
+            # next page redirect
+            next_page = request.args.get('next')
+            if next_page is None or url_parse(next_page).netloc != '':
+                next_page = url_for('main.index')
+            return redirect(next_page)
         # errors
         else:
             error = [v[0] for k, v in form.errors.items()][0]
