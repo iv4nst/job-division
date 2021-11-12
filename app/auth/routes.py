@@ -30,7 +30,6 @@ def login():
         # errors
         else:
             error = [v[0] for k, v in form.errors.items()][0]
-            # error = form.email.errors[0] if form.email.errors else form.password.errors[0]
             return render_template('auth/login.html', title='Login', form=form, message=error)
 
     return render_template('auth/login.html', title='Login', form=form)

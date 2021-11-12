@@ -84,6 +84,13 @@
                                                     <i class="fas fa-user"></i>
                                                 </a>
                                             </li>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteFrom{{job.id}}{{employee.id}}"
+                                                    data-placement="top" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -201,4 +208,35 @@
         </div>
     </div>
 </div>
+
+
+<!-- Delete Employee From Job Modal -->
+{% for employee in employees %}
+<div id="deleteFrom{{job.id}}{{employee.id}}" class="modal fade" tabindex="-1"
+    aria-labelledby="deleteFrom{{job.id}}{{employee.id}}">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box" id="circleDelete">
+                    <i class="fas fa-trash" id="circleDeleteIcon"></i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Do you really want to delete {{employee.first_name}} from {{job.title}}? <br>
+                    This process cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form action="{{ url_for('jobs.delete_from_job', employee_id=employee.id) }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <button type="submit" class="btn" id="deleteButton">Delete</button>
+                    <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endfor %}

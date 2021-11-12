@@ -19,7 +19,7 @@ def employees_list():
 @login_required
 def add_employee():
     # TODO: Mozda izbrisati ovu opciju
-    
+
     # get selected employee and job
     unemployed = request.form.get('unemployed')
     job = request.form.get('job_title')
@@ -77,3 +77,5 @@ def profile(employee_id):
     employee = Employee.query.get_or_404(employee_id)
 
     return render_template('employees/employee.html', employee=employee)
+
+# TODO: Staviti dugme za brisanje posla (radnika sa posla), pored dropdown-a za posao u edit formi

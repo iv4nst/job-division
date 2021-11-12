@@ -33,7 +33,6 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     first_name = StringField('First name', validators=[DataRequired(), Length(min=2, max=30)])
     last_name = StringField('Last name', validators=[DataRequired(), Length(min=2, max=30)])
-    # TODO: Send verification to confirm account
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(),
                                                      Length(min=5,
@@ -54,7 +53,6 @@ class ResetPasswordRequestForm(FlaskForm):
 
 
 class ResetPasswordForm(FlaskForm):
-    # TODO: Namestiti verifikaciju da se poklapaju sifre
     new_password = PasswordField('Password',
                                  validators=[DataRequired(),
                                              Length(min=5, message='Password must be at least 5 characters long.')])

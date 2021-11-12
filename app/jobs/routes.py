@@ -47,7 +47,7 @@ def update_job(job_id):
         return redirect(url_for('jobs.jobs_list'))
 
 
-@jobs.route('/job/<int:job_id>/delete', methods=['POST', 'GET'])
+@jobs.route('/job/<int:job_id>/delete', methods=['POST'])
 @login_required
 def delete_job(job_id):
     job = Job.query.get_or_404(job_id)
@@ -58,16 +58,11 @@ def delete_job(job_id):
     return redirect(url_for('jobs.jobs_list'))
 
 
-# TODO: Staviti za brisanje radnika sa odredjenog posla (modal za poslove - Workers dugme)
-@jobs.route('/employee/<int:job_id>/<int:employee_id>/delete', methods=['POST', 'GET'])
+@jobs.route('/job/employee/<int:employee_id>/delete', methods=['POST'])
 @login_required
-def delete_from_job(job_id, employee_id):
-    # TODO: Videti sto nece da brise (ne reaguje na dugme)
-    # get job and employee
-    job = Job.query.get_or_404(job_id)
+def delete_from_job(employee_id):
     employee = Employee.query.get_or_404(employee_id)
-
-    job.employees.remove(employee)
+    employee.job = None
     db.session.commit()
 
     return redirect(url_for('jobs.jobs_list'))
