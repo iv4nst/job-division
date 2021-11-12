@@ -1,5 +1,7 @@
 <!-- ========================================================= MODALS =========================================================  -->
 
+<!-- TODO: Staviti nove modale da bude bootstrap 5 i responsive -->
+
 <!-- Add Employee Modal -->
 <div id="employeeAdd" class="modal fade" tabindex="-1" aria-labelledby="employeeAdd">
     <div class="modal-dialog modal-confirm">
@@ -11,119 +13,46 @@
                 <h4 class="modal-title w-100">Add employee</h4>
             </div>
             <div class="modal-body">
-                <form class="login100-form validate-form flex-sb flex-w"
-                    action="{{ url_for('employees.add_employee') }}" method="post" novalidate>
+
+                <form action="{{ url_for('employees.add_employee') }}" method="post"
+                    class="login100-form validate-form flex-sb flex-w">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-                    <!-- title -->
-                    <span class="login100-form-title p-b-32 text-center">
-                        Register
-                    </span>
-
-                    <div class="row row-space">
-                        <!-- first name -->
-                        <div class="col-2">
-                            <label class="txt1 p-b-11" for="first_name">First name</label>
-                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
-                                <input class="input100" type="text" name="first_name" id="first_name">
-                                <span class="focus-input100"></span>
-                            </div>
-                        </div>
-                        <!-- last name -->
-                        <div class="col-2">
-
-                            <label class="txt1 p-b-11" for="last_name">Last name</label>
-                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid name">
-                                <input class="input100" type="text" name="last_name" id="last_name">
-                                <span class="focus-input100"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- email -->
-                    <label class="txt1 p-b-11" for="email">Email</label>
-                    <div class="wrap-input100 input-group validate-input m-b-30" data-validate="Invalid email">
-                        <input class="input100" type="text" name="email" id="email">
+                    <!-- select employee -->
+                    <label class="label-txt mb-2" for="unemployed">Employee</label>
+                    <div class="wrap-input100 m-b-12">
+                        <select name="unemployed" id="unemployed" class="input100">
+                            {% for e in employees %}
+                            {% if not e.is_employed() %}
+                            <option value="{{ e.id }}" selected>{{ e.first_name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                            <option selected disabled>Select employee</option>
+                        </select>
                         <span class="focus-input100"></span>
                     </div>
 
-                    <!-- passwords -->
-                    <div class="row row-space">
-                        <div class="col-2">
-                            <label class="txt1 p-b-11" for="password">Password</label>
-                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
-                                <input class="input100" type="password" name="password" id="password">
-                                <span class="focus-input100"></span>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <label class="txt1 p-b-11" for="password_confirm">Confirm password</label>
-                            <div class="wrap-input100 input-group validate-input" data-validate="Invalid password">
-                                <input class="input100" type="password" name="password_confirm" id="password_confirm">
-                                <span class="focus-input100"></span>
-                            </div>
-                        </div>
-                    </div>
+                    <br>
 
-                    <!-- errors -->
-                    <div class="message">
-                        <span class="error_message">{{ message }}</span>
-                    </div>
-
-                    <!-- login -->
-                    <div class="container-login100-form-btn m-t-15">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <input class="login100-form-btn" id="submit" name="submit" type="submit" value="Register">
-                        </div>
-                    </div>
-                </form>
-
-
-                <form action="{{ url_for('employees.add_employee') }}" method="post" novalidate>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
-                    <!-- first name -->
-                    <div class="mb-3">
-                        <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                            placeholder="First name" required>
-                    </div>
-
-                    <!-- last name -->
-                    <div class="mb-3">
-                        <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                            placeholder="Last name" required>
-                    </div>
-
-                    <!-- email -->
-                    <div class="mb-3">
-                        <input type="email" name="email" id="email" class="form-control form-control-sm"
-                            placeholder="Email" required>
-                    </div>
-
-                    <!-- phone number -->
-                    <div class="mb-3">
-                        <input type="text" name="phone_number" id="phone_number" class="form-control form-control-sm"
-                            placeholder="Phone number">
-                    </div>
-
-                    <!-- job -->
-                    <div class="mb-3">
-                        <select id="job_title" name="job_title" class="form-control form-control-sm">
-                            <option>Jobs</option>
+                    <!-- job employee -->
+                    <label class="label-txt mb-2" for="job">Job</label>
+                    <div class="wrap-input100 m-b-12">
+                        <select name="job_title" id="job_title" class="input100">
                             {% for job in jobs %}
-                            <option value="{{ job.title }}">{{ job.title }}
-                            </option>
+                            <option value="{{ job.title }}">{{ job.title }}</option>
                             {% endfor %}
+                            <option selected disabled>Select job</option>
                         </select>
+                        <span class="focus-input100"></span>
                     </div>
 
-                    <!-- buttons -->
+                    <!-- add -->
                     <div class="modal-footer justify-content-center">
                         <button type="submit" class="btn btn-warning">Add</button>
                         <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

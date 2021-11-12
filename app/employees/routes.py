@@ -18,29 +18,21 @@ def employees_list():
 @employees.route('/employee/new', methods=['GET', 'POST'])
 @login_required
 def add_employee():
-    # TODO: Namestiti da se unese i sifra kad se dodaje korisnik
-
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    email = request.form.get('email')
-    phone_number = request.form.get('phone_number')
+    # TODO: Mozda izbrisati ovu opciju
+    
+    # get selected employee and job
+    unemployed = request.form.get('unemployed')
     job = request.form.get('job_title')
 
-    already_exists = Employee.query.filter_by(email=email).first()
-    # TODO: Staviti neku poruku ako postoji radnik
-    # staviti ono validate u modelu
-    # TODO: Srediti da ne mogu dva ista korisnika (isti mejl...i broj telefona)
-    if not already_exists:
-        employee = Employee(first_name=first_name,
-                            last_name=last_name,
-                            email=email)
-        if job and job != 'Jobs':
-            employee.job = job
-        if phone_number:
-            employee.phone_number = phone_number
+    # set job to that employee
+    if unemployed and job:
+        employee = Employee.query.get_or_404(unemployed)
+
+        employee.job = job
 
         db.session.add(employee)
         db.session.commit()
+
     return redirect(url_for('employees.employees_list'))
 
 

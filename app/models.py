@@ -64,6 +64,9 @@ class Employee(db.Model, UserMixin):
             return
         return Employee.query.get(employee_id)
 
+    def is_employed(self):
+        return self.job is not None
+
 
 @login.user_loader
 def load_user(employee_id):

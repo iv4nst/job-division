@@ -18,6 +18,8 @@ def jobs_list():
 @jobs.route('/job/new', methods=['GET', 'POST'])
 @login_required
 def add_job():
+    # TODO: Staviti formu kao login
+
     title = request.form.get('title')
     description = request.form.get('description')
 

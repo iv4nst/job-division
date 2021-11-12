@@ -20,7 +20,8 @@ body {
   padding-top: 50px;
 }
 
-input {
+input,
+select {
   outline: none;
   border: none;
   background: transparent !important;
