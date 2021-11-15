@@ -20,77 +20,60 @@
             <div class="card border-0 shadow">
                 <!-- Responsive table -->
                 <div class="table-responsive">
-                    <div>
-                        <table class="table m-0 table-striped table-hover">
-                            <thead class="table-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone number</th>
-                                <th scope="col">Job</th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for employee in employees %}
-                            <tr>
-                                <td>{{ employee.id }}</td>
-                                <td>{{ employee.first_name }}</td>
-                                <td>{{ employee.last_name }}</td>
-                                <td>{{ employee.email }}</td>
-                                <td>
-                                    {% if employee.phone_number %}
-                                    {{ employee.phone_number }}
-                                    {% else %}
-                                    N/A
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if employee.job %}
-                                    {{ employee.job }}
-                                    {% else %}
-                                    N/A
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    <!-- action buttons -->
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#employeeDetails{{employee.id}}"
-                                                    data-placement="top" title="Details">
-                                                <i class="fas fa-info-circle"></i>
-                                            </button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#employeeUpdate{{employee.id}}" data-placement="top"
-                                                    title="Update">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#employeeDelete{{employee.id}}" data-placement="top"
-                                                    title="Delete" {% if employee==current_user %} disabled {% endif %}>
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
-                                               class="btn btn-warning btn-sm" data-placement="top" title="Profile">
-                                                <i class="fas fa-user"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table m-0 table-striped table-hover">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Job</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for employee in employees %}
+                        <tr>
+                            <td>{{ employee.id }}</td>
+                            <td>{{ employee.first_name }}</td>
+                            <td>{{ employee.last_name }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>
+                                {% if employee.job %}
+                                {{ employee.job }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                <!-- action buttons -->
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#employeeDetails{{employee.id}}" data-placement="top"
+                                                title="Details">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
+                                           class="btn btn-warning btn-sm" data-placement="top" title="Profile">
+                                            <i class="fas fa-user"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#employeeDelete{{employee.id}}" data-placement="top"
+                                                title="Delete" {% if employee==current_user %} disabled {% endif %}>
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

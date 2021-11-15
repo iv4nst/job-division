@@ -23,8 +23,12 @@ class Employee(db.Model, UserMixin):
     last_name = db.Column(db.String(64), index=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True)
     phone_number = db.Column(db.String(32), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    street = db.Column(db.String(120), index=True)
+    street_number = db.Column(db.String(32), index=True)
+    city = db.Column(db.String(120), index=True)
+    country = db.Column(db.String(64), index=True)
     job = db.Column(db.Integer, db.ForeignKey('job.title'))
+    password_hash = db.Column(db.String(128))
     token = db.Column(db.String(32), index=True, unique=True)
     token_expiration = db.Column(db.DateTime)
 
@@ -66,6 +70,13 @@ class Employee(db.Model, UserMixin):
 
     def is_employed(self):
         return self.job is not None
+
+    def has_address(self):
+        """True if employee has a valid address."""
+        return self.street and self.street_number and self.city and self.country
+
+    def get_address(self):
+        return f'{self.street} {self.street_number}, {self.city}, {self.country}'
 
 
 @login.user_loader
