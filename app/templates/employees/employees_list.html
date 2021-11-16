@@ -18,62 +18,68 @@
         <!-- right side table -->
         <div class="col-lg-9 mx-auto">
             <div class="card border-0 shadow">
+               
                 <!-- Responsive table -->
-                <div class="table-responsive">
-                    <table class="table m-0 table-striped table-hover">
-                        <thead class="table-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Job</th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for employee in employees %}
-                        <tr>
-                            <td>{{ employee.id }}</td>
-                            <td>{{ employee.first_name }}</td>
-                            <td>{{ employee.last_name }}</td>
-                            <td>{{ employee.email }}</td>
-                            <td>
-                                {% if employee.job %}
-                                {{ employee.job }}
-                                {% else %}
-                                N/A
-                                {% endif %}
-                            </td>
-                            <td>
-                                <!-- action buttons -->
-                                <ul class="list-inline m-0">
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#employeeDetails{{employee.id}}" data-placement="top"
-                                                title="Details">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
-                                           class="btn btn-warning btn-sm" data-placement="top" title="Profile">
-                                            <i class="fas fa-user"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#employeeDelete{{employee.id}}" data-placement="top"
-                                                title="Delete" {% if employee==current_user %} disabled {% endif %}>
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="content">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Full name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Job</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for employee in employees %}
+                                    <tr>
+                                        <td>{{ employee.id }}</td>
+                                        <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                                        <td>{{ employee.email }}</td>
+                                        <td>
+                                            {% if employee.job %}
+                                            {{ employee.job }}
+                                            <small class="d-block">Far far away, behind the word mountains</small>
+                                            {% else %}
+                                            N/A
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <!-- action buttons -->
+                                            <ul class="list-inline m-0">
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#employeeDetails{{employee.id}}"
+                                                        data-placement="top" title="Details">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
+                                                        class="btn btn-warning btn-sm" data-placement="top"
+                                                        title="Profile">
+                                                        <i class="fas fa-user"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#employeeDelete{{employee.id}}"
+                                                        data-placement="top" title="Delete" {% if employee==current_user
+                                                        %} disabled {% endif %}>
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,6 +13,8 @@ class Job(db.Model):
     description = db.Column(db.String(140))
     employees = db.relationship('Employee', backref='working_as', lazy='dynamic')
 
+    # TODO: Mozda izbrisati opciju za opis posla i dodati nesto drugo
+
     def __repr__(self):
         return f'<Job {self.title}>'
 

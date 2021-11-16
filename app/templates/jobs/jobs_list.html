@@ -20,63 +20,69 @@
             <div class="card border-0 shadow">
 
                 <!-- Responsive table -->
-                <div class="table-responsive">
-                    <table class="table m-0 table-striped table-hover">
-                        <thead class="table-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Employees</th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for job in jobs %}
-                        <tr>
-                            <td>{{ job.id }}</td>
-                            <td>{{ job.title }}</td>
-                            <td>{{ job.description }}</td>
-                            <td>
-                                <ul class="list-inline m-0">
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#job{{job.id}}Employees" data-placement="top"
-                                                title="Details">
-                                            <i class="fas fa-list"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
+                <div class="content">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Employees</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in jobs %}
+                                    <tr>
+                                        <td>{{ job.id }}</td>
+                                        <td>{{ job.title }}</td>
+                                        <td><small class="d-block">{{ job.description }}</small></td>
+                                        <td>
+                                            <ul class="list-inline m-0">
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#job{{job.id}}Employees" data-placement="top"
+                                                        title="Details">
+                                                        <i class="fas fa-list"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
 
-                            <td>
-                                <!-- action buttons -->
-                                <ul class="list-inline m-0">
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#jobDetails{{job.id}}" data-placement="top"
-                                                title="Details">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#jobUpdate{{job.id}}" data-placement="top" title="Update">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#jobDelete{{job.id}}" data-placement="top" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                                        <td>
+                                            <!-- action buttons -->
+                                            <ul class="list-inline m-0">
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#jobDetails{{job.id}}" data-placement="top"
+                                                        title="Details">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#jobUpdate{{job.id}}" data-placement="top"
+                                                        title="Update">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#jobDelete{{job.id}}" data-placement="top"
+                                                        title="Delete">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -46,58 +46,58 @@
                 <h4 class="modal-title w-100">{{ job.title }} employees</h4>
             </div>
             <div class="modal-body">
-                <div class="card border-0 shadow">
-                    <div class="table-responsive">
-                        <table class="table m-0 table-striped table-hover text-left">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">First name</th>
-                                    <th scope="col">Last name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone number</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for employee in employees %}
-                                {% if employee.job == job.title %}
-                                <tr>
-                                    <td>{{ employee.id }}</td>
-                                    <td>{{ employee.first_name }}</td>
-                                    <td>{{ employee.last_name }}</td>
-                                    <td>{{ employee.email }}</td>
-                                    <td>
-                                        {% if employee.phone_number %}
-                                        {{ employee.phone_number }}
-                                        {% else %}
-                                        N/A
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline m-0">
-                                            <li class="list-inline-item">
-                                                <!-- user profile -->
-                                                <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
-                                                    class="btn btn-warning btn-sm" data-placement="top"
-                                                    title="View profile">
-                                                    <i class="fas fa-user"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteFrom{{job.id}}{{employee.id}}"
-                                                    data-placement="top" title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                <div class="content">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Full name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone number</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for employee in employees %}
+                                    {% if employee.job == job.title %}
+                                    <tr>
+                                        <td>{{ employee.id }}</td>
+                                        <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                                        <td>{{ employee.email }}</td>
+                                        <td>
+                                            {% if employee.phone_number %}
+                                            {{ employee.phone_number }}
+                                            {% else %}
+                                            N/A
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <ul class="list-inline m-0">
+                                                <li class="list-inline-item">
+                                                    <!-- user profile -->
+                                                    <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
+                                                        class="btn btn-warning btn-sm" data-placement="top"
+                                                        title="View profile">
+                                                        <i class="fas fa-user"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteFrom{{job.id}}{{employee.id}}"
+                                                        data-placement="top" title="Delete">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,25 +119,31 @@
                 <h4 class="modal-title w-100">Job details</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>ID</th>
-                        <td>{{ job.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Title</th>
-                        <td>{{ job.title }}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{ job.description }}</td>
-                    </tr>
-                    <tr>
-                        <th># of employees</th>
-                        <td>{{ job.employees.count() }}</td>
-                    </tr>
-
-                </table>
+                <div class="content">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table custom-table-vertical">
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{ job.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ job.title }}</td>
+                                </tr>
+                                <tr>
+                                    <!-- TODO: Mozda izbrisati opciju za opis posla -->
+                                    <th>Description</th>
+                                    <td>{{ job.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th># of employees</th>
+                                    <td>{{ job.employees.count() }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Close</button>

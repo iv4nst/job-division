@@ -555,13 +555,168 @@ hr {
         EMPLOYEES
     ========================================================================== */
 
+/*//////////////////////////////////////////////////////////////////
+  [ Table ]*/
+
+/* table */
+.custom-table {
+  min-width: 900px;
+}
+.custom-table thead tr,
+.custom-table thead th {
+  color: #777;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  border-top: none;
+  border-bottom: none !important;
+}
+/* font color in cells */
+.custom-table tbody th,
+.custom-table tbody td {
+  color: #777;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+/* muted text in cells */
+.custom-table tbody th small,
+.custom-table tbody td small {
+  color: #b3b3b3;
+  font-weight: 300;
+}
+/* cells */
+.custom-table tbody tr th,
+.custom-table tbody tr td {
+  position: relative;
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+/* cell hover and other animations */
+.custom-table tbody tr th:before,
+.custom-table tbody tr th:after,
+.custom-table tbody tr td:before,
+.custom-table tbody tr td:after {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  content: "";
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 1px;
+  background: #21d4fd;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+/* hover line top */
+.custom-table tbody tr th:before,
+.custom-table tbody tr td:before {
+  top: -1px;
+}
+/* hover line bottom */
+.custom-table tbody tr th:after,
+.custom-table tbody tr td:after {
+  bottom: -1px;
+}
+/* hover background */
+.custom-table tbody tr:hover th,
+.custom-table tbody tr:hover td {
+  background: rgba(0, 123, 255, 0.03);
+}
+/* hover cell color */
+.custom-table tbody tr:hover th:before,
+.custom-table tbody tr:hover th:after,
+.custom-table tbody tr:hover td:before,
+.custom-table tbody tr:hover td:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* VERTICAL TABLE */
+/* TODO: Srediti gde moze (spojiti sa ovim iznad i napraviti klase i id) */
+.custom-table-vertical {
+  min-width: auto;
+}
+/* font color in cells */
+.custom-table-vertical th,
+.custom-table-vertical td {
+  color: #777;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+/* bold left side */
+.custom-table-vertical th {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+}
+
+/* cells */
+.custom-table-vertical tr th,
+.custom-table-vertical tr td {
+  position: relative;
+
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+/* cell hover and other animations */
+.custom-table-vertical tr th:before,
+.custom-table-vertical tr th:after,
+.custom-table-vertical tr td:before,
+.custom-table-vertical tr td:after {
+  content: "";
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 1px;
+  background: #21d4fd;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+/* hover line top */
+.custom-table-vertical tr th:before,
+.custom-table-vertical tr td:before {
+  top: -1px;
+}
+/* hover line bottom */
+.custom-table-vertical tr th:after,
+.custom-table-vertical tr td:after {
+  bottom: -1px;
+}
+/* hover background */
+.custom-table-vertical tr:hover th,
+.custom-table-vertical tr:hover td {
+  background: rgba(0, 123, 255, 0.03);
+}
+/* hover cell color */
+.custom-table-vertical tr:hover th:before,
+.custom-table-vertical tr:hover th:after,
+.custom-table-vertical tr:hover td:before,
+.custom-table-vertical tr:hover td:after {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* buttons - details, update, delete, profile */
 li button {
   border-radius: 0.3rem !important;
 }
 
-/* profile */
+/*//////////////////////////////////////////////////////////////////
+  [ Profile ]*/
+
 .main-body {
   padding: 15px;
 }

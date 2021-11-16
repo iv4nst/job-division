@@ -72,48 +72,54 @@
                 <h4 class="modal-title w-100">Employee details</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>ID</th>
-                        <td>{{ employee.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>First name</th>
-                        <td>{{ employee.first_name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Last name</th>
-                        <td>{{ employee.last_name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td>{{ employee.email }}</td>
-                    </tr>
-                    <tr>
-                        <th>Phone</th>
-                        <td>
-                            {% if employee.phone_number %}
-                            {{ employee.phone_number }}
-                            {% else %}
-                            N/A
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Address</th>
-                        <td> {{ employee.get_address() }} </td>
-                    </tr>
-                    <tr>
-                        <th>Job</th>
-                        <td>
-                            {% if employee.job %}
-                            {{ employee.job }}
-                            {% else %}
-                            N/A
-                            {% endif %}
-                        </td>
-                    </tr>
-                </table>
+                <div class="content">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table custom-table-vertical">
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{ employee.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>First name</th>
+                                    <td>{{ employee.first_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Last name</th>
+                                    <td>{{ employee.last_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ employee.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>
+                                        {% if employee.phone_number %}
+                                        {{ employee.phone_number }}
+                                        {% else %}
+                                        N/A
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td>{{ employee.get_address() }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Job</th>
+                                    <td>
+                                        {% if employee.job %}
+                                        {{ employee.job }}
+                                        {% else %}
+                                        N/A
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Close</button>

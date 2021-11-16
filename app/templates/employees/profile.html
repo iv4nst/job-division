@@ -18,10 +18,7 @@
                                 <p class="text-secondary mb-1">
                                     {% if employee.job %} {{ employee.job }} {% else %} Unemployed {% endif %}
                                 </p>
-                                <p class="text-muted font-size-sm">
-                                    {% if not employee.has_address() %}{% else %}{{ employee.get_address() }} {% endif
-                                    %}
-                                </p>
+                                <p class="text-muted font-size-sm">{{ employee.get_address() }}</p>
                                 {% if current_user.id != employee.id %}
                                 <button class="btn btn-primary">Follow</button>
                                 <button class="btn btn-outline-primary">Message</button>
@@ -145,9 +142,7 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Address</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                {% if not employee.has_address() %}{% else %}{{ employee.get_address() }} {% endif %}
-                            </div>
+                            <div class="col-sm-9 text-secondary">{{ employee.get_address() }}</div>
                         </div>
                         <hr>
 
