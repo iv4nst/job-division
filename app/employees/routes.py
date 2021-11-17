@@ -20,13 +20,9 @@ def employees_list():
     return render_template('employees/employees_list.html', title='Employees', employees=all_employees, jobs=all_jobs)
 
 
-@employees.route('/employee/new', methods=['GET', 'POST'])
+@employees.route('/employee/add_to_job', methods=['GET', 'POST'])
 @login_required
-def add_employee():
-    # TODO: Mozda izbrisati ovu opciju
-    # TODO: Ako ne izbrisem - staviti da stigne mejl sa random sifrom (ubaciti mogucnost random sifre)
-    #  i namestiti na profil da moze da se menja sifra
-
+def add_to_job():
     # get selected employee and job
     unemployed = request.form.get('unemployed')
     job = request.form.get('job_title')
@@ -68,6 +64,7 @@ def profile(employee_id):
 @login_required
 def edit_profile(employee_id):
     """Employee profile"""
+    # TODO: Staviti da moze da se menja sifra i email (ako se menja email, mora sifra da se unese - mozda)
     # TODO: Staviti dugme edit profile ispod slike, u suprotnom message ili nesto tako
     if current_user.id != employee_id:
         abort(403)

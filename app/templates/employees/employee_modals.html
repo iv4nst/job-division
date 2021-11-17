@@ -1,7 +1,5 @@
 <!-- ========================================================= MODALS =========================================================  -->
 
-<!-- TODO: Staviti nove modale da bude bootstrap 5 i responsive -->
-
 <!-- Add Employee Modal -->
 <div id="employeeAdd" class="modal fade" tabindex="-1" aria-labelledby="employeeAdd">
     <div class="modal-dialog modal-confirm">
@@ -10,18 +8,17 @@
                 <div class="icon-box" id="circleAdd">
                     <i class="fas fa-user-plus" id="circleAddIcon"></i>
                 </div>
-                <h4 class="modal-title w-100">Add employee</h4>
+                <h4 class="modal-title w-100">Add employee to job</h4>
             </div>
             <div class="modal-body">
 
-                <form action="{{ url_for('employees.add_employee') }}" method="post"
-                    class="login100-form validate-form flex-sb flex-w">
+                <form action="{{ url_for('employees.add_to_job') }}" method="post">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <!-- select employee -->
-                    <label class="label-txt mb-2" for="unemployed">Employee</label>
-                    <div class="wrap-input100 m-b-12">
-                        <select name="unemployed" id="unemployed" class="input100">
+                    <div style="text-align: left;">
+                        <label class="label-txt mb-2" for="unemployed">Employee</label>
+                        <select name="unemployed" id="unemployed" class="form-select">
                             {% for e in employees %}
                             {% if not e.is_employed() %}
                             <option value="{{ e.id }}" selected>{{ e.first_name }}</option>
@@ -29,21 +26,19 @@
                             {% endfor %}
                             <option selected disabled>Select employee</option>
                         </select>
-                        <span class="focus-input100"></span>
                     </div>
 
                     <br>
 
                     <!-- job employee -->
-                    <label class="label-txt mb-2" for="job">Job</label>
-                    <div class="wrap-input100 m-b-12">
-                        <select name="job_title" id="job_title" class="input100">
+                    <div style="text-align: left;">
+                        <label class="label-txt mb-2" for="job">Job</label>
+                        <select name="job_title" id="job_title" class="form-select">
                             {% for job in jobs %}
                             <option value="{{ job.title }}">{{ job.title }}</option>
                             {% endfor %}
                             <option selected disabled>Select job</option>
                         </select>
-                        <span class="focus-input100"></span>
                     </div>
 
                     <!-- add -->
@@ -62,7 +57,7 @@
 
 <!-- Employee Details Modal -->
 <div id="employeeDetails{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeDetails{{employee.id}}">
+    aria-labelledby="employeeDetails{{employee.id}}" aria-hidden="true">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">

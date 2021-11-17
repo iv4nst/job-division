@@ -9,8 +9,9 @@
         <!-- left side -->
         <div class="col-lg-3 col-md-3">
             <div class="list-group">
-                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#employeeAdd">Add
-                    Employee</a>
+                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#employeeAdd">
+                    Add Employee To Job
+                </a>
                 <a href="{{ url_for('jobs.jobs_list') }}" class="btn btn-info">View Jobs</a>
             </div>
         </div>
@@ -18,7 +19,7 @@
         <!-- right side table -->
         <div class="col-lg-9 mx-auto">
             <div class="card border-0 shadow">
-               
+
                 <!-- Responsive table -->
                 <div class="content">
                     <div class="container">
@@ -42,7 +43,6 @@
                                         <td>
                                             {% if employee.job %}
                                             {{ employee.job }}
-                                            <small class="d-block">Far far away, behind the word mountains</small>
                                             {% else %}
                                             N/A
                                             {% endif %}

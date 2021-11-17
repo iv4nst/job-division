@@ -20,8 +20,7 @@ body {
   padding-top: 50px;
 }
 
-input,
-select {
+input {
   outline: none;
   border: none;
   background: transparent !important;
@@ -709,6 +708,11 @@ hr {
   visibility: visible;
 }
 
+/* MODAL TABLE */
+.custom-table-modal {
+  min-width: auto;
+}
+
 /* buttons - details, update, delete, profile */
 li button {
   border-radius: 0.3rem !important;
@@ -776,6 +780,15 @@ li button {
 /* ==========================================================================
         MODALS
     ========================================================================== */
+
+/* add employee */
+.form-select {
+  width: auto;
+}
+.form-select:focus {
+  box-shadow: none;
+  border-color: #21d4fd;
+}
 
 /* editing */
 .mb-3 label {
