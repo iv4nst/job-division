@@ -4,9 +4,7 @@ from flask_login import login_required, current_user
 from app import db
 from app.employees import employees
 from app.models import Employee, Job
-
-
-# from app.employees.forms import EditProfileForm
+from app.employees.forms import EditEmployeeForm
 
 
 @employees.route('/employees_list', methods=['GET', 'POST'])
@@ -65,54 +63,46 @@ def profile(employee_id):
 def edit_profile(employee_id):
     """Employee profile"""
     # TODO: Staviti da moze da se menja sifra i email (ako se menja email, mora sifra da se unese - mozda)
-    # TODO: Staviti dugme edit profile ispod slike, u suprotnom message ili nesto tako
-    if current_user.id != employee_id:
-        abort(403)
-
-    employee = Employee.query.get_or_404(employee_id)
-
-    all_jobs = Job.query.all()
-
     # TODO: Mozda staviti da bude request job change (i dugme za trazenje promene pored posla)
     #  stigne poruka adminu da je zatrazena promena, i onda se menja...
 
-    return render_template('employees/profile-edit.html', employee=employee, jobs=all_jobs)
-
-
-@employees.route('/employee/<int:employee_id>/update', methods=['POST'])
-@login_required
-def update_profile(employee_id):
-    """Employee profile"""
     if current_user.id != employee_id:
         abort(403)
 
+    all_jobs = Job.query.all()
+
     employee = Employee.query.get_or_404(employee_id)
+    form = EditEmployeeForm()
     if request.method == 'POST':
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        email = request.form.get('email')
-        phone_number = request.form.get('phone_number')
-        street = request.form.get('street')
-        street_number = request.form.get('street_number')
-        city = request.form.get('city')
-        country = request.form.get('country')
-        job = request.form.get('job_title')
+        if form.validate_on_submit():
+            first_name = request.form.get('first_name')
+            last_name = request.form.get('last_name')
+            street = request.form.get('street')
+            street_number = request.form.get('street_number')
+            city = request.form.get('city')
+            country = request.form.get('country')
+            job = request.form.get('job_title')
 
-        # TODO: Srediti greske (isti email, broj...)
+            employee.first_name = first_name
+            employee.last_name = last_name
+            employee.street = street
+            employee.street_number = street_number
+            employee.city = city
+            employee.country = country
+            if job:
+                employee.job = job
 
-        employee.first_name = first_name
-        employee.last_name = last_name
-        employee.email = email
-        employee.phone_number = phone_number
-        employee.street = street
-        employee.street_number = street_number
-        employee.city = city
-        employee.country = country
-        if job:
-            employee.job = job
-
-        db.session.commit()
-        return redirect(url_for('employees.profile', employee_id=employee_id))
-    return render_template('employees/profile-edit.html', employee=employee)
+            db.session.commit()
+            return redirect(url_for('employees.profile', employee_id=employee_id))
+        else:
+            # if form.first_name.errors:
+            #     error = 'Djole'
+            error = [v[0] for k, v in form.errors.items()][0]
+            return render_template('employees/profile-edit.html',
+                                   employee=employee,
+                                   jobs=all_jobs,
+                                   form=form,
+                                   message=error)
+    return render_template('employees/profile-edit.html', employee=employee, jobs=all_jobs, form=form)
 
 # TODO: Staviti dugme za brisanje posla (radnika sa posla), pored dropdown-a za posao u edit formi

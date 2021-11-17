@@ -13,7 +13,7 @@
             <div class="modal-body">
 
                 <form action="{{ url_for('employees.add_to_job') }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
                     <!-- select employee -->
                     <div style="text-align: left;">
@@ -57,7 +57,7 @@
 
 <!-- Employee Details Modal -->
 <div id="employeeDetails{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeDetails{{employee.id}}" aria-hidden="true">
+     aria-labelledby="employeeDetails{{employee.id}}" aria-hidden="true">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -88,16 +88,6 @@
                                     <td>{{ employee.email }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Phone</th>
-                                    <td>
-                                        {% if employee.phone_number %}
-                                        {{ employee.phone_number }}
-                                        {% else %}
-                                        N/A
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>Address</th>
                                     <td>{{ employee.get_address() }}</td>
                                 </tr>
@@ -125,7 +115,7 @@
 
 <!-- Delete Employee Modal -->
 <div id="employeeDelete{{employee.id}}" class="modal fade" tabindex="-1"
-    aria-labelledby="employeeDelete{{employee.id}}">
+     aria-labelledby="employeeDelete{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -141,7 +131,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <form action="{{ url_for('employees.delete_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <button type="submit" class="btn" id="deleteButton">Delete</button>
                     <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                 </form>
