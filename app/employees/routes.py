@@ -13,8 +13,6 @@ def employees_list():
     all_employees = Employee.query.all()
     all_jobs = Job.query.all()
 
-    # TODO: Staviti posao da na klik vodi na stranicu posla, kao profil kod radnika (napraviti stranicu)
-
     return render_template('employees/employees_list.html', title='Employees', employees=all_employees, jobs=all_jobs)
 
 
@@ -22,14 +20,15 @@ def employees_list():
 @login_required
 def add_to_job():
     # get selected employee and job
-    unemployed = request.form.get('unemployed')
-    job = request.form.get('job_title')
+    unemployed = request.form.get('unemployed')  # chosen employee from list of unemployed
+    job = request.form.get('job_id')  # chosen job from list of jobs
 
     # set job to that employee
     if unemployed and job:
         employee = Employee.query.get_or_404(unemployed)
 
-        employee.job = job
+        # employee.job_id = job
+        employee.set_job(job)
 
         db.session.add(employee)
         db.session.commit()
@@ -69,28 +68,22 @@ def edit_profile(employee_id):
     if current_user.id != employee_id:
         abort(403)
 
-    all_jobs = Job.query.all()
-
     employee = Employee.query.get_or_404(employee_id)
+
+    all_jobs = Job.query.all()
     form = EditEmployeeForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            first_name = request.form.get('first_name')
-            last_name = request.form.get('last_name')
-            street = request.form.get('street')
-            street_number = request.form.get('street_number')
-            city = request.form.get('city')
-            country = request.form.get('country')
-            job = request.form.get('job_title')
+            job = request.form.get('job_id')
 
-            employee.first_name = first_name
-            employee.last_name = last_name
-            employee.street = street
-            employee.street_number = street_number
-            employee.city = city
-            employee.country = country
+            employee.first_name = form.first_name.data
+            employee.last_name = form.last_name.data
+            employee.street = form.street.data
+            employee.street_number = form.street_number.data
+            employee.city = form.city.data
+            employee.country = form.country.data
             if job:
-                employee.job = job
+                employee.set_job(job)
 
             db.session.commit()
             return redirect(url_for('employees.profile', employee_id=employee_id))

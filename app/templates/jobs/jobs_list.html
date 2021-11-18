@@ -9,7 +9,8 @@
         <!-- left side -->
         <div class="col-lg-3 col-md-3">
             <div class="list-group">
-                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#jobAdd">Add Job</a>
+                <button href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#jobAdd">Add
+                    Job</button>
                 <a href="{{ url_for('employees.employees_list') }}" class="btn btn-info">View Employees</a>
             </div>
         </div>
@@ -28,7 +29,7 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Title</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col"></th>
                                         <th scope="col">Employees</th>
                                         <th scope="col">Actions</th>
                                     </tr>
@@ -38,13 +39,13 @@
                                     <tr>
                                         <td>{{ job.id }}</td>
                                         <td>{{ job.title }}</td>
-                                        <td><small class="d-block">{{ job.description }}</small></td>
+                                        <td><small class="d-block">OVDE JE BIO OPIS</small></td>
                                         <td>
                                             <ul class="list-inline m-0">
                                                 <li class="list-inline-item">
                                                     <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#job{{job.id}}Employees" data-placement="top"
-                                                        title="Details">
+                                                        title="Employees">
                                                         <i class="fas fa-list"></i>
                                                     </button>
                                                 </li>
@@ -55,11 +56,11 @@
                                             <!-- action buttons -->
                                             <ul class="list-inline m-0">
                                                 <li class="list-inline-item">
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#jobDetails{{job.id}}" data-placement="top"
-                                                        title="Details">
+                                                    <a href="{{ url_for('jobs.job_page', job_id=job.id) }}"
+                                                        class="btn btn-primary btn-sm" data-placement="top"
+                                                        title="Job page">
                                                         <i class="fas fa-info-circle"></i>
-                                                    </button>
+                                                    </a>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <button class="btn btn-success btn-sm" data-bs-toggle="modal"

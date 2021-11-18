@@ -21,13 +21,13 @@ class LoginForm(FlaskForm):
 
     def validate_email(self, field):
         if self._user is None:
-            raise ValidationError("Email not recognized.")
+            raise ValidationError('Incorrect email or password.')
 
     def validate_password(self, field):
         if self._user is None:
             raise ValidationError()  # just to be sure
         if not self._user.check_password(self.password.data):  # password check embedded into employee model
-            raise ValidationError("Incorrect password.")
+            raise ValidationError('Incorrect email or password.')
 
 
 class RegistrationForm(FlaskForm):
@@ -37,14 +37,15 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(),
                                                      Length(min=5,
                                                             message='Password must be at least 5 characters long.')])
-    password_confirm = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password', message='Passwords must match.')])
+    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(),
+                                                                     EqualTo('password',
+                                                                             message='Passwords must match.')])
     submit = SubmitField('Register')
 
     def validate_email(self, email):
         employee = Employee.query.filter_by(email=email.data).first()
         if employee:
-            raise ValidationError('Please use a different email address.')
+            raise ValidationError('Please use a different email.')
 
 
 class ResetPasswordRequestForm(FlaskForm):

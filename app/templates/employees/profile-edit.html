@@ -10,16 +10,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
-                                 class="rounded-circle p-1 bg-primary" width="110">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="profile_image"
+                                class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>{{ employee.first_name }} {{ employee.last_name }}</h4>
+                                {% if employee.job %}
                                 <p class="text-secondary mb-1">
-                                    {% if employee.job %} {{ employee.job }} {% else %} Unemployed {% endif %}
+                                    <a class="link-txt" href="{{ url_for('jobs.job_page', job_id=employee.job.id) }}">
+                                        {{ employee.job.title }}
+                                    </a>
                                 </p>
+                                {% else %}
+                                <p class="text-secondary mb-1"> Unemployed </p>
+                                {% endif %}
                                 <p class="text-muted font-size-sm">
-                                    {% if not employee.has_address() %}{% else %}{{ employee.get_address() }} {% endif
-                                    %}
+                                    {{ employee.address }}
                                 </p>
                             </div>
                         </div>
@@ -27,14 +32,13 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-globe me-2 icon-inline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <line x1="2" y1="12" x2="22" y2="12"></line>
                                         <path
-                                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                                         </path>
                                     </svg>
                                     Website
@@ -43,12 +47,11 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-github me-2 icon-inline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-github me-2 icon-inline">
                                         <path
-                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
                                         </path>
                                     </svg>
                                     Github
@@ -57,12 +60,12 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-twitter me-2 icon-inline text-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-twitter me-2 icon-inline text-info">
                                         <path
-                                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
                                         </path>
                                     </svg>
                                     Twitter
@@ -71,10 +74,10 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-instagram me-2 icon-inline text-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-instagram me-2 icon-inline text-danger">
                                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -85,10 +88,10 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-facebook me-2 icon-inline text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-facebook me-2 icon-inline text-primary">
                                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
                                         </path>
                                     </svg>
@@ -105,7 +108,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <form action="" method="post">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                             <!-- TODO: Srediti da bude u istoj ravni tekst i input polje -->
 
@@ -115,9 +118,8 @@
                                     <h6 class="mb-0">First name</h6>
                                 </div>
                                 <div class="col-sm-3 text-secondary">
-                                    <input type="text" name="first_name" id="first_name"
-                                           class="form-control"
-                                           value="{{ employee.first_name }}" placeholder="First name">
+                                    <input type="text" name="first_name" id="first_name" class="form-control"
+                                        value="{{ employee.first_name }}" placeholder="First name">
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <!-- error -->
@@ -135,7 +137,7 @@
                                 </div>
                                 <div class="col-sm-3 text-secondary">
                                     <input type="text" name="last_name" id="last_name" class="form-control"
-                                           value="{{ employee.last_name }}" placeholder="Last name">
+                                        value="{{ employee.last_name }}" placeholder="Last name">
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <!-- error -->
@@ -153,10 +155,10 @@
                                 </div>
                                 <div class="col-sm-3 text-secondary">
                                     <input type="email" name="email" id="email" class="form-control"
-                                           value="{{ employee.email }}" placeholder="Email" disabled>
+                                        value="{{ employee.email }}" placeholder="Email" disabled>
                                 </div>
                                 <!-- TODO: Napraviti stranicu za promenu mejla -->
-                                <div class="col-sm-3 text-secondary">
+                                <div class="col-sm-3 text-secondary d-flex align-items-center">
                                     <a href="#" class="link-txt">Change</a>
                                 </div>
                             </div>
@@ -170,7 +172,7 @@
                                 <div class="col-sm-3 text-secondary">
                                     <div class="col-sm-2 text-secondary">
                                         <input type="text" name="street" id="street" class="form-control"
-                                               value="{{ employee.street }}" placeholder="Street">
+                                            value="{{ employee.get_street }}" placeholder="Street">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -188,7 +190,7 @@
                                 <div class="col-sm-3 text-secondary">
                                     <div class="col-sm-2 text-secondary">
                                         <input type="text" name="street_number" id="street_number" class="form-control"
-                                               value="{{ employee.street_number }}" placeholder="Street number">
+                                            value="{{ employee.get_street_number }}" placeholder="Street number">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -206,7 +208,7 @@
                                 <div class="col-sm-3 text-secondary">
                                     <div class="col-sm-2 text-secondary">
                                         <input type="text" name="city" id="city" class="form-control"
-                                               value="{{ employee.city }}" placeholder="City">
+                                            value="{{ employee.get_city }}" placeholder="City">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -224,7 +226,7 @@
                                 <div class="col-sm-3 text-secondary">
                                     <div class="col-sm-2 text-secondary">
                                         <input type="text" name="country" id="country" class="form-control"
-                                               value="{{ employee.country }}" placeholder="Country">
+                                            value="{{ employee.get_country }}" placeholder="Country">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -237,22 +239,28 @@
                             </div>
 
                             <!-- job -->
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Job</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <select name="job_title" id="job_title" class="form-select">
+                                <div class="col-sm-3 text-secondary">
+                                    <select name="job_id" id="job_id" class="form-select">
                                         {% if employee.job %}
-                                        <option selected disabled>{{ employee.job }}</option>
+                                        <option selected disabled>{{ employee.job.title }}</option>
                                         {% else %}
                                         <option selected disabled>Select job</option>
                                         {% endif %}
 
                                         {% for job in jobs %}
-                                        <option value="{{ job.title }}">{{ job.title }}</option>
+                                        <option value="{{ job.id }}">{{ job.title }}</option>
                                         {% endfor %}
                                     </select>
+                                </div>
+                                <div class="col-sm-3 d-flex align-items-center">
+                                    {% if employee.job %}
+                                    <a class="link-txt"
+                                        href="{{ url_for('jobs.job_page', job_id=employee.job.id) }}">View</a>
+                                    {% endif %}
                                 </div>
                             </div>
                             <hr>
@@ -261,7 +269,7 @@
                                 <div class="text-secondary">
                                     <button type="submit" class="btn btn-success px-4">Update</button>
                                     <a href="{{ url_for('employees.profile', employee_id=employee.id) }}"
-                                       class="btn btn-danger px-4">Discard</a>
+                                        class="btn btn-danger px-4">Discard</a>
                                 </div>
                             </div>
                         </form>

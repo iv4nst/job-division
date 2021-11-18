@@ -9,9 +9,9 @@
         <!-- left side -->
         <div class="col-lg-3 col-md-3">
             <div class="list-group">
-                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#employeeAdd">
+                <button href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#employeeAdd">
                     Add Employee To Job
-                </a>
+                </button>
                 <a href="{{ url_for('jobs.jobs_list') }}" class="btn btn-info">View Jobs</a>
             </div>
         </div>
@@ -42,7 +42,12 @@
                                         <td>{{ employee.email }}</td>
                                         <td>
                                             {% if employee.job %}
-                                            {{ employee.job }}
+                                            {% for job in jobs %}
+                                            {% if job.id == employee.job.id %}
+                                            <a class="link-txt" href="{{ url_for('jobs.job_page', job_id=job.id) }}">{{
+                                                employee.job.title }}</a>
+                                            {% endif %}
+                                            {% endfor %}
                                             {% else %}
                                             N/A
                                             {% endif %}

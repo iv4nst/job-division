@@ -725,6 +725,27 @@ li button {
   padding: 15px;
 }
 
+/* link to job page */
+.text-secondary .link-txt {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.4;
+  text-decoration: none;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+.text-secondary .link-txt:hover {
+  color: #21d4fd;
+}
+.text-secondary .link-txt:focus {
+  outline: none !important;
+}
+
 .card {
   position: relative;
   display: flex;

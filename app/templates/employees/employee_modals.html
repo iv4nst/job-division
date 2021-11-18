@@ -13,15 +13,17 @@
             <div class="modal-body">
 
                 <form action="{{ url_for('employees.add_to_job') }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                     <!-- select employee -->
                     <div style="text-align: left;">
                         <label class="label-txt mb-2" for="unemployed">Employee</label>
                         <select name="unemployed" id="unemployed" class="form-select">
-                            {% for e in employees %}
-                            {% if not e.is_employed() %}
-                            <option value="{{ e.id }}" selected>{{ e.first_name }}</option>
+                            {% for employee in employees %}
+                            {% if not employee.job %}
+                            <option value="{{ employee.id }}" selected>
+                                {{ employee.first_name }} {{ employee.last_name }}
+                            </option>
                             {% endif %}
                             {% endfor %}
                             <option selected disabled>Select employee</option>
@@ -33,9 +35,9 @@
                     <!-- job employee -->
                     <div style="text-align: left;">
                         <label class="label-txt mb-2" for="job">Job</label>
-                        <select name="job_title" id="job_title" class="form-select">
+                        <select name="job_id" id="job_id" class="form-select">
                             {% for job in jobs %}
-                            <option value="{{ job.title }}">{{ job.title }}</option>
+                            <option value="{{ job.id }}">{{ job.title }}</option>
                             {% endfor %}
                             <option selected disabled>Select job</option>
                         </select>
@@ -57,7 +59,7 @@
 
 <!-- Employee Details Modal -->
 <div id="employeeDetails{{employee.id}}" class="modal fade" tabindex="-1"
-     aria-labelledby="employeeDetails{{employee.id}}" aria-hidden="true">
+    aria-labelledby="employeeDetails{{employee.id}}" aria-hidden="true">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -89,13 +91,13 @@
                                 </tr>
                                 <tr>
                                     <th>Address</th>
-                                    <td>{{ employee.get_address() }}</td>
+                                    <td>{{ employee.address }}</td>
                                 </tr>
                                 <tr>
                                     <th>Job</th>
                                     <td>
                                         {% if employee.job %}
-                                        {{ employee.job }}
+                                        {{ employee.job.title }}
                                         {% else %}
                                         N/A
                                         {% endif %}
@@ -115,7 +117,7 @@
 
 <!-- Delete Employee Modal -->
 <div id="employeeDelete{{employee.id}}" class="modal fade" tabindex="-1"
-     aria-labelledby="employeeDelete{{employee.id}}">
+    aria-labelledby="employeeDelete{{employee.id}}">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header flex-column">
@@ -131,7 +133,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <form action="{{ url_for('employees.delete_employee', employee_id=employee.id) }}" method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <button type="submit" class="btn" id="deleteButton">Delete</button>
                     <button type="button" class="btn" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
                 </form>

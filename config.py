@@ -10,6 +10,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'job_division.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # ADMINS = [os.environ.get('ADMIN_EMAIL')]
     ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')
     ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
