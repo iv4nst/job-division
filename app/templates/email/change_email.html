@@ -1,0 +1,13 @@
+<p>Dear {{ employee.first_name }},</p>
+
+<p>
+    You have requested an email change to {{ new_email }}.
+</p>
+<p>
+    <a href="{{ url_for('employees.change_email', token=token, new_email=new_email, _external=True) }}">Click here</a>
+    to verify your new email.
+</p>
+
+<p>If you did not request an email change simply ignore this message.</p>
+<p>Sincerely,</p>
+<p>Job-Division Team</p>

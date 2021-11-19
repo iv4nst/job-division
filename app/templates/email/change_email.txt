@@ -1,0 +1,11 @@
+Dear {{ employee.first_name }},
+
+To change your email click on the following link:
+
+{{ url_for('employees.change_email', token=token, new_email=new_email, _external=True) }}
+
+If you have not requested an email change simply ignore this message.
+
+Sincerely,
+
+Job-Division Team

@@ -64,6 +64,25 @@ class Employee(db.Model, UserMixin):
             return
         return Employee.query.get(employee_id)
 
+    def get_change_email_token(self, expires_in=600):
+        """Get token for email change."""
+        return jwt.encode(
+            {'change_email': self.id, 'exp': time() + expires_in},
+            current_app.config['SECRET_KEY'], algorithm='HS256')
+
+    @staticmethod
+    def verify_change_email_token(token):
+        """
+        Decode the email change token.
+        :param token: email change token
+        :return: employee id if token is valid
+        """
+        try:
+            employee_id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])['change_email']
+        except:
+            return
+        return Employee.query.get(employee_id)
+
     def has_address(self):
         """True if employee has a valid address."""
         return self.street and self.street_number and self.city and self.country

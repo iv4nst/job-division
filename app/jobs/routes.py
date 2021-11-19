@@ -67,7 +67,7 @@ def delete_job(job_id):
 @login_required
 def delete_from_job(job_id, employee_id):
     # TODO: Staviti da redirektuje na pravu stranicu (posto se poziva i na stranici posla, ne samo u jobs_list)
-    #   ako je pozvano na jobs_list preko tabele, onda brati na jobs_list,
+    #   ako je pozvano na jobs_list preko tabele, onda vrati na jobs_list,
     #   ako je pozvano u job_page, onda vrati na job_page
     employee = Employee.query.get_or_404(employee_id)
     job = Job.query.get_or_404(job_id)

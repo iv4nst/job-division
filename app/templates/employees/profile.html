@@ -172,14 +172,19 @@
                         </div>
                         <hr>
 
-                        <!-- edit profile button -->
                         {% if current_user.id == employee.id %}
                         <div class="row">
                             <!-- <div class="col-sm-3"></div> -->
                             <div class="col-sm-9 text-secondary">
+                                <!-- edit profile button -->
                                 <a class="btn btn-warning"
                                     href="{{ url_for('employees.edit_profile', employee_id=employee.id) }}">
                                     Edit profile
+                                </a>
+                                <!-- edit account button -->
+                                <a class="btn btn-info"
+                                    href="{{ url_for('employees.edit_account', employee_id=employee.id) }}">
+                                    Edit account
                                 </a>
                             </div>
                         </div>

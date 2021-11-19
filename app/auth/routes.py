@@ -74,7 +74,7 @@ def reset_password_request():
         employee = Employee.query.filter_by(email=form.email.data).first()
         if employee:
             send_password_reset_email(employee)
-            return render_template('email/email_sent.html', title='Email sent')
+            return render_template('email/reset_password_email_sent.html', title='Email sent')
         else:
             error = 'Email not recognized.'
             return render_template('auth/reset_password_request.html', title='Forgot Password', form=form,
